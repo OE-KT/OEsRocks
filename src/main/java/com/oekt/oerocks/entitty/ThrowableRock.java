@@ -14,6 +14,14 @@ import net.minecraft.world.phys.HitResult;
 
 public class ThrowableRock extends ThrowableItemProjectile {
    public float damege = 5.0f;
+   public Rocktype type;
+   public enum Rocktype {
+        NORM,
+        FIRE,
+        ICE,
+
+    }
+
 
     public ThrowableRock(EntityType<? extends ThrowableItemProjectile> EntityType, Level Level) {
         super(EntityType, Level);
@@ -42,7 +50,19 @@ public class ThrowableRock extends ThrowableItemProjectile {
         super.onHitEntity(result);
         Entity entity = result.getEntity();
 
-        entity.hurt(this.damageSources().thrown(this, this.getOwner()), damege);
+        entity.hurt(this.damageSources().thrown(this, this.getOwner()), damege); // Detirms behavior onHit
+        if(type!=null) {
+            switch(type) {
+                case FIRE:
+                    entity.setSecondsOnFire(10);
+                    break;
+                case ICE:
+                    break;
+
+            }
+        }
+
+
         super.onHitEntity(result);
     }
 
@@ -54,6 +74,13 @@ public class ThrowableRock extends ThrowableItemProjectile {
         if (!this.level().isClientSide) {
             this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
+
+
+
         }
+
+
     }
+
+
 }

@@ -13,7 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class Rock extends Item {
-
+    public ThrowableRock.Rocktype rocktype = ThrowableRock.Rocktype.NORM;
+    public int damege = 5;
     public Rock(Properties prop) {
 
         super(prop);
@@ -24,11 +25,15 @@ public class Rock extends Item {
         ItemStack itemstack = player.getItemInHand(hand);
         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
         player.getCooldowns().addCooldown(this, 20);
+
         if (!level.isClientSide) {
 
             ThrowableRock rock = new ThrowableRock(level, player);
+            rock.type = rocktype;
+            rock.damege = damege;
             rock.setItem(itemstack);
             rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 0.7F, 1.0F);
+
             level.addFreshEntity(rock);
         }
 
@@ -39,5 +44,6 @@ public class Rock extends Item {
 
         return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
     }
+
 
 }

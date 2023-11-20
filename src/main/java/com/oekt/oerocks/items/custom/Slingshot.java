@@ -5,6 +5,7 @@ import com.mojang.math.Axis;
 import com.oekt.oerocks.entitty.ThrowableRock;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.util.ModTags;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -54,8 +55,37 @@ public class Slingshot extends ProjectileWeaponItem {
                 }
                 return true;
             }
+            private static final HumanoidModel.ArmPose SLINGSHOT_POSE = HumanoidModel.ArmPose.create("SLINGSHOT", true, (model, entity, arm) -> {
+                if (arm == HumanoidArm.RIGHT) {
+                    //model.rightArm.yRot = (float) (Math.random() * Math.PI * 2);
+                    model.rightArm.yRot = -0.1F + model.head.yRot - 0.4F;
+                    model.leftArm.yRot = 0.1F + model.head.yRot;
+                    model.rightArm.xRot = (-(float)Math.PI / 2F) + model.head.xRot;
+                    model.leftArm.xRot = (-(float)Math.PI / 2F) + model.head.xRot;
+
+
+                } else {
+                    model.rightArm.yRot = -0.1F + model.head.yRot - 0.4F;
+                    model.leftArm.yRot = 0.1F + model.head.yRot;
+                    model.rightArm.xRot = (-(float)Math.PI / 2F) + model.head.xRot;
+                    model.leftArm.xRot = (-(float)Math.PI / 2F) + model.head.xRot;
+                }
+            });
+
+            @Override
+            public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack itemStack) {
+                if (!itemStack.isEmpty()) {
+                    if (entityLiving.getUsedItemHand() == hand && entityLiving.getUseItemRemainingTicks() > 0) {
+                        return SLINGSHOT_POSE;
+                    }
+                }
+                return HumanoidModel.ArmPose.EMPTY;
+            }
         });
+
     }
+
+
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
@@ -92,6 +122,7 @@ public class Slingshot extends ProjectileWeaponItem {
                 if(!level.isClientSide()) {
                     ThrowableRock rock = new ThrowableRock(level, player);
                     rock.setItem(itemstack);
+                    rock.type = ThrowableRock.Rocktype.FIRE;
                     rock.damege = rock.damege*(power+1);
                     rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f*power, 1.0F);
                     level.addFreshEntity(rock);
