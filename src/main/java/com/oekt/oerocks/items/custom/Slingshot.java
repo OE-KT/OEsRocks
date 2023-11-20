@@ -1,20 +1,29 @@
 package com.oekt.oerocks.items.custom;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.oekt.oerocks.entitty.ThrowableRock;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.util.ModTags;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.fml.common.Mod;
+import org.joml.AxisAngle4d;
+import org.joml.Quaternionf;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Slingshot extends ProjectileWeaponItem {
@@ -24,6 +33,28 @@ public class Slingshot extends ProjectileWeaponItem {
 
     public Slingshot(Properties p_41383_) {
         super(p_41383_);
+    }
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            @Override
+            public boolean applyForgeHandTransform(PoseStack poseStack, LocalPlayer player, HumanoidArm arm, ItemStack itemInHand, float partialTick, float equipProcess, float swingProcess) {
+                int i = arm == HumanoidArm.RIGHT ? 1 : -1;
+                poseStack.translate(i * 0.56F, -0.52F, -0.72F);
+                float useTime = itemInHand.getUseDuration();
+
+                if (player.getUseItem() == itemInHand && player.isUsingItem()) {
+                    poseStack.translate(-0.5, 0, 0.0);
+                    poseStack.mulPose(Axis.YP.rotationDegrees((float)i * 90.0F));
+                    float interpetTimeUse = (float)itemInHand.getUseDuration() - ((float)player.getUseItemRemainingTicks() - partialTick + 1.0F);
+                    float inbetwwenTimeRotioe = Mth.lerp(interpetTimeUse, 0, 1);
+                    System.out.println(inbetwwenTimeRotioe);
+                    //poseStack.mulPose(Axis.XP.rotationDegrees(10.0F));
+                    poseStack.mulPose(Axis.ZP.rotationDegrees((float)i * Mth.clamp(inbetwwenTimeRotioe, 0, 30)));
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -39,7 +70,7 @@ public class Slingshot extends ProjectileWeaponItem {
 
     @Override
     public UseAnim getUseAnimation(ItemStack p_41452_) {
-        return UseAnim.BOW;
+        return UseAnim.CUSTOM;
     }
 
     @Override
