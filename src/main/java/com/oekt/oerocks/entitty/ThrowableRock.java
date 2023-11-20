@@ -13,6 +13,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
 public class ThrowableRock extends ThrowableItemProjectile {
+   public float damege = 5.0f;
 
     public ThrowableRock(EntityType<? extends ThrowableItemProjectile> EntityType, Level Level) {
         super(EntityType, Level);
@@ -41,9 +42,10 @@ public class ThrowableRock extends ThrowableItemProjectile {
         super.onHitEntity(result);
         Entity entity = result.getEntity();
 
-        entity.hurt(this.damageSources().thrown(this, this.getOwner()), 5.0f);
+        entity.hurt(this.damageSources().thrown(this, this.getOwner()), damege);
         super.onHitEntity(result);
     }
+
 
     @Override
     protected void onHit(HitResult result) {

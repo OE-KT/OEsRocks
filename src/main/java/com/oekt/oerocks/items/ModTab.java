@@ -17,7 +17,9 @@ public class ModTab {
         .icon(() -> ModItems.ROCK.get().getDefaultInstance())
         .displayItems((parameters, output) -> {
             output.accept(ModItems.ROCK.get());
-            output.accept(ModBlocks.EXAMPLE_BLOCK.get());// Add the example item to the tab. For your own tabs, this method is preferred over the event
+            output.accept(ModBlocks.EXAMPLE_BLOCK.get());
+            output.accept(ModItems.SLINGSHOT.get());
+            output.accept(ModItems.HAMMER.get());// Add the example item to the tab. For your own tabs, this method is preferred over the event
         }).build());
 
 }

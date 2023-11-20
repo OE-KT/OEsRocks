@@ -28,7 +28,7 @@ public class Rock extends Item {
 
             ThrowableRock rock = new ThrowableRock(level, player);
             rock.setItem(itemstack);
-            rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+            rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 0.7F, 1.0F);
             level.addFreshEntity(rock);
         }
 
