@@ -19,7 +19,8 @@ public class Hammer extends Item {
     public Hammer(Properties p_41383_) {
         super(p_41383_);
     }
-
+    // Terrible Code its 9:10PM and I have just finshed tweeking the slingshot
+    //  EHHEHEHHEHEHHEH
     @Override
     public InteractionResult useOn(UseOnContext context) {
         BlockPos pos = context.getClickedPos();
