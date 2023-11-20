@@ -6,9 +6,11 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Hammer extends Item {
@@ -24,13 +26,16 @@ public class Hammer extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         BlockPos pos = context.getClickedPos();
+        Player player = context.getPlayer();
+        Level level = context.getLevel();
         boolean IsStone = context.getLevel().getBlockState(pos).is(BlockTags.BASE_STONE_OVERWORLD);
-        if(IsStone && !context.getPlayer().getCooldowns().isOnCooldown(this)) {
-            context.getLevel().destroyBlock(pos, false);
-            context.getPlayer().getInventory().add(new ItemStack(ModItems.ROCK.get(), context.getLevel().getRandom().nextInt(1, maxRocks)));
-            context.getPlayer().getCooldowns().addCooldown(this, cooldown);
+        if(!level.isClientSide() && IsStone && !player.getCooldowns().isOnCooldown(this)) {
+            level.destroyBlock(pos, false);
+            player.getInventory().add(new ItemStack(ModItems.ROCK.get(), level.getRandom().nextInt(1, maxRocks)));
+           player.getCooldowns().addCooldown(this, cooldown);
+            return InteractionResult.PASS;
         }
-        context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
+        //context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
         return super.useOn(context);
     }
 }
