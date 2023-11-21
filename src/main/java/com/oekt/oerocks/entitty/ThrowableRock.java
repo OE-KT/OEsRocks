@@ -57,6 +57,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
                     entity.setSecondsOnFire(10);
                     break;
                 case ICE:
+                    entity.setTicksFrozen(300);
                     break;
 
             }

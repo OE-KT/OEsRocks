@@ -19,7 +19,10 @@ public class ModTab {
             output.accept(ModItems.ROCK.get());
             output.accept(ModBlocks.EXAMPLE_BLOCK.get());
             output.accept(ModItems.SLINGSHOT.get());
-            output.accept(ModItems.HAMMER.get());// Add the example item to the tab. For your own tabs, this method is preferred over the event
+            output.accept(ModItems.HAMMER.get());
+            output.accept(ModItems.MOLTEN_ROCK.get());
+            output.accept(ModItems.FREEZE_ROCK.get());
+            // Add the example item to the tab. For your own tabs, this method is preferred over the event
         }).build());
 
 }
