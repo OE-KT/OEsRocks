@@ -1,6 +1,8 @@
 package com.oekt.oerocks.entitty;
 
+import com.oekt.oerocks.OErocks;
 import com.oekt.oerocks.items.ModItems;
+import com.oekt.oerocks.items.custom.Rock;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,14 +14,34 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
-public class ThrowableRock extends ThrowableItemProjectile {
-   public float damege = 5.0f;
-   public Rocktype type;
-   public enum Rocktype {
-        NORM,
-        FIRE,
-        ICE,
+import java.util.HashMap;
+import java.util.Map;
 
+public class ThrowableRock extends ThrowableItemProjectile {
+
+   public enum Rocktype {
+        NORM(0),
+        FIRE(1),
+        ICE(2);
+       public final int typeV;
+
+       private Rocktype(int value)
+       {
+           typeV = value;
+       }
+
+       private static final Map<Integer, Rocktype> _map = new HashMap<Integer, Rocktype>();
+       static
+       {
+           for (Rocktype type : Rocktype.values())
+               _map.put(type.typeV, type);
+       }
+
+
+       public static Rocktype from(int value)
+       {
+           return _map.get(value);
+       }
     }
 
 
@@ -48,18 +70,24 @@ public class ThrowableRock extends ThrowableItemProjectile {
     @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
-        Entity entity = result.getEntity();
+        if(!(this.getItem().getItem() instanceof Rock rockCc)) {
+            return;
+        }
 
-        entity.hurt(this.damageSources().thrown(this, this.getOwner()), damege); // Detirms behavior onHit
-        if(type!=null) {
-            switch(type) {
+        Entity entity = result.getEntity();
+        OErocks.LOGGER.info(rockCc.getRockType().toString());
+        double Damage = rockCc.getDamege()*(this.getItem().getOrCreateTag().getDouble("power")+1);
+        entity.hurt(this.damageSources().thrown(this, this.getOwner()),(float) Damage); // Detirms behavior onHit
+        if(rockCc.getRockType()!=null) {
+            switch(rockCc.getRockType()) {
                 case FIRE:
                     entity.setSecondsOnFire(10);
                     break;
                 case ICE:
                     entity.setTicksFrozen(300);
                     break;
-
+                default:
+                    break;
             }
         }
 

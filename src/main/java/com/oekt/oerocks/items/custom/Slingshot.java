@@ -28,6 +28,8 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Slingshot extends ProjectileWeaponItem {
+    private int LoadedDamge = 0;
+    private int LoadedType = 0;
     public static final Predicate<ItemStack> ROCKS_ONLY = (p_43017_) -> {
         return p_43017_.is(ModTags.Items.ROCKS);
     };
@@ -121,18 +123,28 @@ public class Slingshot extends ProjectileWeaponItem {
             if (!((double)power < 0.1D)) {
                 if(!level.isClientSide()) {
                     ThrowableRock rock = new ThrowableRock(level, player);
-                    rock.setItem(itemstack);
-                    rock.type = ThrowableRock.Rocktype.FIRE;
-                    rock.damege = rock.damege*(power+1);
+
+                    ItemStack ammo = itemstack.split(1);
+                    if (player.isCreative()) {
+                        itemstack.grow(1);
+                    }
+
+                    ammo.getOrCreateTag().putDouble("power", power);
+                    rock.setItem(ammo);
+
+
+
+
+
+                    //rock.damege = rock.damege*(power+1);
+
                     rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f*power, 1.0F);
                     level.addFreshEntity(rock);
                     level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.DEEPSLATE_HIT, SoundSource.PLAYERS, 1.0F, 1.3f*power);
                 }
 
                 player.awardStat(Stats.ITEM_USED.get(this));
-                if (!player.getAbilities().instabuild) {
-                    itemstack.shrink(1);
-                }
+
             }
 
 
@@ -146,6 +158,8 @@ public class Slingshot extends ProjectileWeaponItem {
     }
     public InteractionResultHolder<ItemStack> use(Level p_40672_, Player p_40673_, InteractionHand p_40674_) {
         ItemStack itemstack = p_40673_.getItemInHand(p_40674_);
+
+
         boolean flag = !p_40673_.getProjectile(itemstack).isEmpty();
 
         InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, p_40672_, p_40673_, p_40674_, flag);

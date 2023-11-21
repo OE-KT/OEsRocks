@@ -2,6 +2,7 @@
   "values": [
     "oerocks:rock",
     "oerocks:molten_rock",
-    "oerocks:freeze_rock"
+    "oerocks:freeze_rock",
+    "oerocks:deepslate_rock"
   ]
 }

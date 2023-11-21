@@ -22,6 +22,7 @@ public class ModTab {
             output.accept(ModItems.HAMMER.get());
             output.accept(ModItems.MOLTEN_ROCK.get());
             output.accept(ModItems.FREEZE_ROCK.get());
+            output.accept(ModItems.DEEPSLATE_ROCK.get());
             // Add the example item to the tab. For your own tabs, this method is preferred over the event
         }).build());
 

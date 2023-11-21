@@ -29,7 +29,7 @@ public class OErocks
     // Define mod id in a common place for everything to reference
     public static final String MODID = "oerocks";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
   
 
 

@@ -1,6 +1,8 @@
 package com.oekt.oerocks.items.custom;
 
+import com.oekt.oerocks.OErocks;
 import com.oekt.oerocks.entitty.ThrowableRock;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -11,46 +13,48 @@ import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class Rock extends Item {
-    public ThrowableRock.Rocktype rocktype = ThrowableRock.Rocktype.NORM;
-    public int damege = 5;
-    public int cooldown = 20;
+    public ThrowableRock.Rocktype rocktype;
+    private int damege = 5;
+    private int cooldown = 20;
 
-    public Rock(Properties prop) {
-
+    boolean Saved = false;
+    public Rock(Properties prop, int damege, ThrowableRock.Rocktype rocktype, int cooldown) {
         super(prop);
+        this.damege = damege;
+        this.rocktype = rocktype;
+        this.cooldown = cooldown;
+
+
+
     }
 
     public int getDamege() {
-        return damege;
+        return this.damege;
     }
-    public ThrowableRock.Rocktype getType() {
-        return rocktype;
+    public ThrowableRock.Rocktype getRockType() {
+        return this.rocktype;
     }
-    public Rock setDamge(int dmg) {
-        this.damege = dmg;
-        return this;
+
+    public int getCooldown() {
+        return this.cooldown;
     }
-    public Rock setType(ThrowableRock.Rocktype type) {
-        this.rocktype = type;
-        return this;
-    }
-    public Rock setCooldown(int cooldown) {
-        this.cooldown = cooldown;
-        return this;
-    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+
+
         ItemStack itemstack = player.getItemInHand(hand);
+
         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
         player.getCooldowns().addCooldown(this, cooldown);
 
         if (!level.isClientSide) {
 
             ThrowableRock rock = new ThrowableRock(level, player);
-            rock.type = rocktype;
-            rock.damege = damege;
+
 
             rock.setItem(itemstack);
             rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 0.7F, 1.0F);
@@ -67,5 +71,13 @@ public class Rock extends Item {
     }
 
 
+    /*@Override
+    public @NotNull ItemStack getDefaultInstance() {
+        //OErocks.LOGGER.info(Saved + " Item Stack: " + this.getDefaultInstance());
+        ItemStack stack = super.getDefaultInstance();
 
+        stack.getOrCreateTag().putInt("damege", damege);
+        stack.getOrCreateTag().putInt("type", rocktype.ordinal());
+        return stack;
+    }*/
 }
