@@ -5,6 +5,7 @@ import com.oekt.oerocks.blocks.ModBlocks;
 import com.oekt.oerocks.entitty.ModEnittys;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.ModTab;
+import com.oekt.oerocks.loot.ModLootModifres;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -51,6 +52,8 @@ public class OErocks
         MinecraftForge.EVENT_BUS.register(this);
 
         ModEnittys.ENTITYS_TYPES.register(modEventBus);
+
+        ModLootModifres.LOOT_MODIFRERS_SEARLIZERS.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
