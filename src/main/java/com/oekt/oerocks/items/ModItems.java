@@ -5,6 +5,7 @@ import com.oekt.oerocks.items.custom.Hammer;
 import com.oekt.oerocks.items.custom.Rock;
 import com.oekt.oerocks.items.custom.Slingshot;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -24,5 +25,5 @@ public class ModItems { public static final DeferredRegister<Item> ITEMS = Defer
             4, ThrowableRock.Rocktype.ICE, 8));
 
     public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", () -> new Slingshot(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new Hammer(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new Hammer(Tiers.STONE, 3, 2,new Item.Properties().stacksTo(1)));
 }

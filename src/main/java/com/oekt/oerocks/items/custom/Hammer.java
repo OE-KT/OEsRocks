@@ -9,18 +9,22 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class Hammer extends Item {
+public class Hammer extends PickaxeItem {
     public int cooldown = 10;
 
     public int maxRocks = 3;
 
-    public Hammer(Properties p_41383_) {
-        super(p_41383_);
+    public Hammer(Tier p_42961_, int p_42962_, float p_42963_, Properties p_42964_) {
+        super(p_42961_, p_42962_, p_42963_, p_42964_);
     }
+
+
     // Terrible Code its 9:10PM and I have just finshed tweeking the slingshot
     //  EHHEHEHHEHEHHEH
     @Override

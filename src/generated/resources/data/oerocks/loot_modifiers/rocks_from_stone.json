@@ -4,6 +4,14 @@
     {
       "block": "minecraft:stone",
       "condition": "minecraft:block_state_property"
+    },
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "items": [
+          "oerocks:hammer"
+        ]
+      }
     }
   ],
   "item": "oerocks:rock"
