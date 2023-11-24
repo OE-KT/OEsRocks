@@ -16,10 +16,15 @@ public class ModTab {
         .withTabsBefore(CreativeModeTabs.COMBAT)
         .icon(() -> ModItems.ROCK.get().getDefaultInstance())
         .displayItems((parameters, output) -> {
-            output.accept(ModItems.ROCK.get());
-            output.accept(ModBlocks.EXAMPLE_BLOCK.get());
             output.accept(ModItems.SLINGSHOT.get());
-            output.accept(ModItems.HAMMER.get());
+            output.accept(ModBlocks.EXAMPLE_BLOCK.get());
+            // Hammers
+            output.accept(ModItems.STONE_HAMMER.get());
+            output.accept(ModItems.IRON_HAMMER.get());
+            output.accept(ModItems.DIMOND_HAMMER.get());
+            output.accept(ModItems.NETHERITE_HAMMER.get());
+            // Rocks
+            output.accept(ModItems.ROCK.get());
             output.accept(ModItems.MOLTEN_ROCK.get());
             output.accept(ModItems.FREEZE_ROCK.get());
             output.accept(ModItems.DEEPSLATE_ROCK.get());

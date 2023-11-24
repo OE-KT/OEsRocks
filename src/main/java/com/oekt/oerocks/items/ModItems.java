@@ -12,7 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static com.oekt.oerocks.OErocks.MODID;
 
-public class ModItems { public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+public class ModItems {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     // Rocks
     public static final RegistryObject<Item> ROCK = ITEMS.register("rock", () -> new Rock(new Item.Properties().stacksTo(64), 5, ThrowableRock.Rocktype.NORM, 20));
 
@@ -25,5 +26,14 @@ public class ModItems { public static final DeferredRegister<Item> ITEMS = Defer
             4, ThrowableRock.Rocktype.ICE, 8));
 
     public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", () -> new Slingshot(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new Hammer(Tiers.STONE, 3, 2,new Item.Properties().stacksTo(1)));
+
+    // Hammers
+    public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", () -> new Hammer(Tiers.STONE, 4, 0.2f, new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", () -> new Hammer(Tiers.IRON, 4, 0.2f, new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("dimond_hammer", () -> new Hammer(Tiers.DIAMOND, 4, 0.2f, new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", () -> new Hammer(Tiers.NETHERITE, 4, 0.2f, new Item.Properties().stacksTo(1)));
+
 }
