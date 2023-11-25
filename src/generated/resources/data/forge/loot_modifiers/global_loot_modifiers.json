@@ -1,8 +1,4 @@
 {
-  "entries": [
-    "oerocks:stonetier_rocks_from_block.minecraft.stone",
-    "oerocks:stonetier_rocks_from_block.minecraft.dirt",
-    "oerocks:stonetier_rocks_from_block.minecraft.andesite"
-  ],
+  "entries": [],
   "replace": false
 }

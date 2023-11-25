@@ -26,18 +26,14 @@ public class ModLootGlobolPrvioders extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        Block[] stone_teir = {
-                Blocks.STONE,
-                Blocks.DIRT,
-                Blocks.ANDESITE
-        };
 
-        for (Block block : stone_teir) {
-            add("stonetier_rocks_from_" + block.getDescriptionId(), new AddItemModifer(new LootItemCondition[] {
 
-                    LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).build(),
-                    MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModItems.STONE_HAMMER.get())).build()}, ModItems.ROCK.get()));
-        }
+
+//            add("rocks_from_cobbelestone", new AddItemModifer(new LootItemCondition[] {
+//
+//                    LootItemBlockStatePropertyCondition.hasBlockStateProperties().build(),
+//                    MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModItems.STONE_HAMMER.get())).build()}, ModItems.ROCK.get()));
+
 
 
     }

@@ -20,9 +20,9 @@ public class ModTab {
             output.accept(ModBlocks.EXAMPLE_BLOCK.get());
             // Hammers
             output.accept(ModItems.STONE_HAMMER.get());
-            output.accept(ModItems.IRON_HAMMER.get());
-            output.accept(ModItems.DIMOND_HAMMER.get());
-            output.accept(ModItems.NETHERITE_HAMMER.get());
+//            output.accept(ModItems.IRON_HAMMER.get());
+//            output.accept(ModItems.DIMOND_HAMMER.get());
+//            output.accept(ModItems.NETHERITE_HAMMER.get());
             // Rocks
             output.accept(ModItems.ROCK.get());
             output.accept(ModItems.MOLTEN_ROCK.get());

@@ -34,7 +34,9 @@ public class AddItemModifer extends LootModifier {
                 return generatedLoot;
             }
         }
-        generatedLoot.remove(0);
+       
+
+
         generatedLoot.add(new ItemStack(this.item));
 
         return generatedLoot;

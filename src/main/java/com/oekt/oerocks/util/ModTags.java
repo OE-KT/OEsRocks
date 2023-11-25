@@ -11,7 +11,9 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
 
     public static class Blocks {
+        public static final TagKey<Block> HAMMER_MINEABLE = tag("mineable/hammer");
 
+        public static final TagKey<Block> NEEDS_STONE = tag("needs_stone");
         private static TagKey <Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(OErocks.MODID, name));
         }

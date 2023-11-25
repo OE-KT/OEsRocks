@@ -6,6 +6,7 @@ import com.oekt.oerocks.items.custom.Rock;
 import com.oekt.oerocks.items.custom.Slingshot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -28,12 +29,12 @@ public class ModItems {
     public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", () -> new Slingshot(new Item.Properties().stacksTo(1)));
 
     // Hammers
-    public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", () -> new Hammer(Tiers.STONE, 4, 0.2f, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", () -> new Hammer(0.0f, 2.5f, Tiers.STONE, new Item.Properties().stacksTo(1)));
 
-    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", () -> new Hammer(Tiers.IRON, 4, 0.2f, new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("dimond_hammer", () -> new Hammer(Tiers.DIAMOND, 4, 0.2f, new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", () -> new Hammer(Tiers.NETHERITE, 4, 0.2f, new Item.Properties().stacksTo(1)));
+//    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", () -> new Hammer(Tiers.IRON, 4, 0.2f, new Item.Properties().stacksTo(1)));
+//
+//    public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("dimond_hammer", () -> new Hammer(Tiers.DIAMOND, 4, 0.2f, new Item.Properties().stacksTo(1)));
+//
+//    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", () -> new Hammer(Tiers.NETHERITE, 4, 0.2f, new Item.Properties().stacksTo(1)));
 
 }

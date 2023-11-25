@@ -1,30 +1,33 @@
 package com.oekt.oerocks.items.custom;
 
 import com.oekt.oerocks.items.ModItems;
+import com.oekt.oerocks.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.ToolAction;
 
-public class Hammer extends PickaxeItem {
-    public int cooldown = 10;
+public class Hammer extends DiggerItem {
 
-    public int maxRocks = 3;
 
-    public Hammer(Tier p_42961_, int p_42962_, float p_42963_, Properties p_42964_) {
-        super(p_42961_, p_42962_, p_42963_, p_42964_);
+    public Hammer(float p_204108_, float p_204109_, Tier p_204110_, Properties p_204112_) {
+        super(p_204108_, p_204109_, p_204110_, ModTags.Blocks.HAMMER_MINEABLE, p_204112_);
     }
 
+    @Override
+    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
 
+        return ModToolActions.DEFAULT_HAMMER_ACTIONS.contains(toolAction);
+    }
     // Terrible Code its 9:10PM and I have just finshed tweeking the slingshot
     //  EHHEHEHHEHEHHEH
 //    @Override
