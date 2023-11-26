@@ -1,3 +1,9 @@
 {
-  "item.oerocks.rock": "Rock"
+  "item.oerocks.rock": "Rock",
+  "item.oerocks.deepslate_rock": "Deepslate Rock",
+  "item.oerocks.molten_rock": "Molten Rock",
+  "item.oerocks.freeze_rock": "Frosted Rock",
+  "item.oerocks.slingshot": "SlingShot",
+  "item.oerocks.stone_hammer": "Stone Hammer",
+  "block.oerocks.settlement": "Settlement"
 }

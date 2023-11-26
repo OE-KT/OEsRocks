@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "oerocks:stone_hammer"
+  }
+}
