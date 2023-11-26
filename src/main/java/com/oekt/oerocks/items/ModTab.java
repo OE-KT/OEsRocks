@@ -17,7 +17,7 @@ public class ModTab {
         .icon(() -> ModItems.ROCK.get().getDefaultInstance())
         .displayItems((parameters, output) -> {
             output.accept(ModItems.SLINGSHOT.get());
-            output.accept(ModBlocks.EXAMPLE_BLOCK.get());
+            output.accept(ModBlocks.SETTLEMENT.get());
             // Hammers
             output.accept(ModItems.STONE_HAMMER.get());
 //            output.accept(ModItems.IRON_HAMMER.get());

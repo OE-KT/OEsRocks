@@ -24,7 +24,7 @@ registerKey("settlement");
         RuleTest stoneReplace = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 
         List<OreConfiguration.TargetBlockState> overworldSettlement = List.of(OreConfiguration.target(stoneReplace,
-                ModBlocks.EXAMPLE_BLOCK.get().defaultBlockState()));
+                ModBlocks.SETTLEMENT.get().defaultBlockState()));
 
         register(context, OVERWOLRD_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldSettlement, 20));
     }

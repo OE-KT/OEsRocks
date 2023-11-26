@@ -26,10 +26,10 @@ public class ModItems {
     public static final RegistryObject<Item> FREEZE_ROCK = ITEMS.register("freeze_rock", () -> new Rock(new Item.Properties().stacksTo(64),
             4, ThrowableRock.Rocktype.ICE, 8));
 
-    public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", () -> new Slingshot(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", () -> new Slingshot(new Item.Properties().stacksTo(1).durability(467)));
 
     // Hammers
-    public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", () -> new Hammer(0.0f, 2.5f, Tiers.STONE, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", () -> new Hammer(3f, -3.5f, Tiers.STONE, new Item.Properties().stacksTo(1)));
 
 //    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", () -> new Hammer(Tiers.IRON, 4, 0.2f, new Item.Properties().stacksTo(1)));
 //
