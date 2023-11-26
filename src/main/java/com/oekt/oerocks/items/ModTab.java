@@ -18,9 +18,10 @@ public class ModTab {
         .displayItems((parameters, output) -> {
             output.accept(ModItems.SLINGSHOT.get());
             output.accept(ModBlocks.SETTLEMENT.get());
+            output.accept(ModBlocks.AGED_SETTLEMENT.get());
             // Hammers
             output.accept(ModItems.STONE_HAMMER.get());
-//            output.accept(ModItems.IRON_HAMMER.get());
+            output.accept(ModItems.IRON_HAMMER.get());
 //            output.accept(ModItems.DIMOND_HAMMER.get());
 //            output.accept(ModItems.NETHERITE_HAMMER.get());
             // Rocks

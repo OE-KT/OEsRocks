@@ -14,6 +14,8 @@ public class ModTags {
         public static final TagKey<Block> HAMMER_MINEABLE = tag("mineable/hammer");
 
         public static final TagKey<Block> NEEDS_STONE = tag("needs_stone");
+
+        public static final TagKey<Block> NEEDS_IRON = tag("needs_iron");
         private static TagKey <Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(OErocks.MODID, name));
         }

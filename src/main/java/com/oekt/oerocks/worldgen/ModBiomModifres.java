@@ -15,6 +15,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModBiomModifres {
     public static final ResourceKey<BiomeModifier> ADD_SETTLEMENT = registerKey("add_settlement");
 
+    public static final ResourceKey<BiomeModifier> ADD_AGED_SETTLEMENT = registerKey("add_aged_settlement");
+
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
@@ -22,6 +24,11 @@ public class ModBiomModifres {
         context.register(ADD_SETTLEMENT, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFetures.SETTLEMENT_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_AGED_SETTLEMENT, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFetures.AGED_SETTLEMENT_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
     }
     private static ResourceKey<BiomeModifier> registerKey(String name) {

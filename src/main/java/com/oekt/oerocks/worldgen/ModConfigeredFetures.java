@@ -19,14 +19,18 @@ import java.util.List;
 public class ModConfigeredFetures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWOLRD_SETTLEMENT_KEY =
 registerKey("settlement");
-
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_AGED_SETTLEMENT_KEY =
+            registerKey("aged_settlement");
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplace = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
-
+        RuleTest deepslateReplace = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
         List<OreConfiguration.TargetBlockState> overworldSettlement = List.of(OreConfiguration.target(stoneReplace,
                 ModBlocks.SETTLEMENT.get().defaultBlockState()));
+        List<OreConfiguration.TargetBlockState> overworldAgedSettlement = List.of(OreConfiguration.target(deepslateReplace,
+                ModBlocks.AGED_SETTLEMENT.get().defaultBlockState()));
 
         register(context, OVERWOLRD_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldSettlement, 20));
+        register(context, OVERWORLD_AGED_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldAgedSettlement, 20));
     }
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(OErocks.MODID, name));

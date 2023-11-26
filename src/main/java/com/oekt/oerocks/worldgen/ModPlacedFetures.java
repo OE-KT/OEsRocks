@@ -19,12 +19,19 @@ public class ModPlacedFetures {
 
     public static final ResourceKey<PlacedFeature> SETTLEMENT_PLACED_KEY = registerKey("settlement_placed");
 
+    public static final ResourceKey<PlacedFeature> AGED_SETTLEMENT_PLACED_KEY = registerKey("aged_settlement_placed");
+
+
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?,?>> configeredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, SETTLEMENT_PLACED_KEY, configeredFeatures.getOrThrow(ModConfigeredFetures.OVERWOLRD_SETTLEMENT_KEY),
                 ModOrePlacement.commonOrePlacement(4,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-20), VerticalAnchor.absolute(60))));
+
+        register(context, AGED_SETTLEMENT_PLACED_KEY, configeredFeatures.getOrThrow(ModConfigeredFetures.OVERWORLD_AGED_SETTLEMENT_KEY),
+                ModOrePlacement.commonOrePlacement(5,
+                        HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
     }
     private static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(OErocks.MODID, name));
