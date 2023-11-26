@@ -23,8 +23,8 @@ public class ModPlacedFetures {
         HolderGetter<ConfiguredFeature<?,?>> configeredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, SETTLEMENT_PLACED_KEY, configeredFeatures.getOrThrow(ModConfigeredFetures.OVERWOLRD_SETTLEMENT_KEY),
-                ModOrePlacement.commonOrePlacement(12,
-                        HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(80))));
+                ModOrePlacement.commonOrePlacement(3,
+                        HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(90))));
     }
     private static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(OErocks.MODID, name));

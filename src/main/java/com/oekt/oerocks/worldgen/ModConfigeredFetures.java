@@ -21,12 +21,12 @@ public class ModConfigeredFetures {
 registerKey("settlement");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-        RuleTest stoneReplace = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+        RuleTest stoneReplace = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
 
         List<OreConfiguration.TargetBlockState> overworldSettlement = List.of(OreConfiguration.target(stoneReplace,
                 ModBlocks.SETTLEMENT.get().defaultBlockState()));
 
-        register(context, OVERWOLRD_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldSettlement, 20));
+        register(context, OVERWOLRD_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldSettlement, 64));
     }
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(OErocks.MODID, name));
