@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "oerocks:rock",
+              "name": "oerocks:deepslate_rock",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -32,14 +32,14 @@
               "children": [
                 {
                   "type": "minecraft:item",
-                  "name": "oerocks:deepslate_rock",
+                  "name": "oerocks:molten_rock",
                   "conditions": [
                     {
                       "condition": "minecraft:table_bonus",
                       "enchantment": "minecraft:fortune",
                       "chances": [
                         0.1,
-                        0.34285715,
+                        0.1,
                         0.55,
                         1
                       ]
@@ -48,7 +48,8 @@
                 },
                 {
                   "type": "minecraft:item",
-                  "name": "oerocks:rock"
+                  "weight": 1,
+                  "name": "oerocks:deepslate_rock"
                 }
               ],
               "conditions": [
@@ -62,5 +63,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/gravel"
+  "random_sequence": "oerocks:blocks/settlement"
 }
