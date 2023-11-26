@@ -145,6 +145,9 @@ public class Slingshot extends ProjectileWeaponItem {
                 }
 
                 player.awardStat(Stats.ITEM_USED.get(this));
+                stack.hurtAndBreak(1, player, (eplayer) -> {
+                    eplayer.broadcastBreakEvent(player.getUsedItemHand());
+                });
 
             }
 
@@ -183,6 +186,7 @@ public class Slingshot extends ProjectileWeaponItem {
 
         return f;
     }
+
 
 
 }
