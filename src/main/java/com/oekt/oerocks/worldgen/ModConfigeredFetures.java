@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockStateMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
@@ -21,16 +22,25 @@ public class ModConfigeredFetures {
 registerKey("settlement");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_AGED_SETTLEMENT_KEY =
             registerKey("aged_settlement");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_FROSTED_SETTLEMENT_KEY =
+            registerKey("frosted_settlement");
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplace = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+
         RuleTest deepslateReplace = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
+        RuleTest overworldreplace = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
         List<OreConfiguration.TargetBlockState> overworldSettlement = List.of(OreConfiguration.target(stoneReplace,
                 ModBlocks.SETTLEMENT.get().defaultBlockState()));
         List<OreConfiguration.TargetBlockState> overworldAgedSettlement = List.of(OreConfiguration.target(deepslateReplace,
                 ModBlocks.AGED_SETTLEMENT.get().defaultBlockState()));
 
+        List<OreConfiguration.TargetBlockState> overworldFrostedSettlement = List.of(OreConfiguration.target(overworldreplace,
+                ModBlocks.FROSTED_SETTLEMENT.get().defaultBlockState()));
+
         register(context, OVERWOLRD_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldSettlement, 20));
         register(context, OVERWORLD_AGED_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldAgedSettlement, 20));
+        register(context, OVERWORLD_FROSTED_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldFrostedSettlement, 20));
     }
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(OErocks.MODID, name));
