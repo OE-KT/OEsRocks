@@ -1,0 +1,16 @@
+{
+  "type": "oerocks:add_item",
+  "conditions": [
+    {
+      "block": "minecraft:cobbled_deepslate",
+      "condition": "minecraft:block_state_property"
+    },
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "tag": "oerocks:hammers"
+      }
+    }
+  ],
+  "item": "oerocks:deepslate_rock"
+}
