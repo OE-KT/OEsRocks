@@ -5,5 +5,7 @@
   "item.oerocks.freeze_rock": "Frosted Rock",
   "item.oerocks.slingshot": "SlingShot",
   "item.oerocks.stone_hammer": "Stone Hammer",
-  "block.oerocks.settlement": "Settlement"
+  "item.oerocks.iron_hammer": "Iron Hammer",
+  "block.oerocks.settlement": "Settlement",
+  "block.oerocks.aged_settlement": "Aged Settlement"
 }
