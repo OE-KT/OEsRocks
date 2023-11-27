@@ -1,4 +1,7 @@
 {
-  "entries": [],
+  "entries": [
+    "oerocks:rocks_from_cobbelestone",
+    "oerocks:rocks_from_deepslate"
+  ],
   "replace": false
 }

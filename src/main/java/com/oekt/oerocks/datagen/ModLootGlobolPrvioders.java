@@ -29,10 +29,15 @@ public class ModLootGlobolPrvioders extends GlobalLootModifierProvider {
 
 
 
-//            add("rocks_from_cobbelestone", new AddItemModifer(new LootItemCondition[] {
-//
-//                    LootItemBlockStatePropertyCondition.hasBlockStateProperties().build(),
-//                    MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModItems.STONE_HAMMER.get())).build()}, ModItems.ROCK.get()));
+            add("rocks_from_cobbelestone", new AddItemModifer(new LootItemCondition[] {
+
+                    LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.COBBLESTONE).build(),
+                    MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.Items.HAMMER)).build()}, ModItems.ROCK.get()));
+
+        add("rocks_from_deepslate", new AddItemModifer(new LootItemCondition[] {
+
+                LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.COBBLED_DEEPSLATE).build(),
+                MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModTags.Items.HAMMER)).build()}, ModItems.DEEPSLATE_ROCK.get()));
 
 
 

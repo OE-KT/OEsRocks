@@ -22,6 +22,8 @@ public class ModTags {
     }
     public static class Items {
         public static final TagKey<Item> ROCKS = tag("rocks");
+        public static final TagKey<Item> HAMMER = tag("hammers");
+
         private static TagKey <Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(OErocks.MODID, name));
         }

@@ -36,8 +36,12 @@ public class AddItemModifer extends LootModifier {
         }
        
 
+        if(context.getRandom().nextBoolean()) {
 
-        generatedLoot.add(new ItemStack(this.item));
+            generatedLoot.remove(0);
+            generatedLoot.add(new ItemStack(this.item));
+        }
+
 
         return generatedLoot;
     }

@@ -1,7 +1,8 @@
 {
   "values": [
     "oerocks:settlement",
-    "oerocks:aged_settlement"
-
+    "oerocks:aged_settlement",
+    "minecraft:cobblestone",
+    "minecraft:cobbled_deepslate"
   ]
 }
