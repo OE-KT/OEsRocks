@@ -3,6 +3,7 @@
     "oerocks:settlement",
     "oerocks:aged_settlement",
     "minecraft:cobblestone",
-    "minecraft:cobbled_deepslate"
+    "minecraft:cobbled_deepslate",
+    "oerocks:frosted_settlement"
   ]
 }

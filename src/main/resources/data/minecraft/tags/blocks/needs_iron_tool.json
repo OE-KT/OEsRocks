@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "oerocks:aged_settlement",
-    "minecraft:cobbled_deepslate"
-
+    "minecraft:cobbled_deepslate",
+    "oerocks:frosted_settlement"
   ]
 }
