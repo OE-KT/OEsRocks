@@ -1,6 +1,7 @@
 package com.oekt.oerocks.items;
 
 import com.oekt.oerocks.entitty.ThrowableRock;
+import com.oekt.oerocks.items.custom.CopperHammer;
 import com.oekt.oerocks.items.custom.Hammer;
 import com.oekt.oerocks.items.custom.Rock;
 import com.oekt.oerocks.items.custom.Slingshot;
@@ -32,6 +33,8 @@ public class ModItems {
     public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", () -> new Hammer(3f, -3.5f, Tiers.STONE, new Item.Properties().stacksTo(1)));
 
    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", () -> new Hammer(4f, -3.5f, Tiers.IRON,  new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> COPPER_HAMMER = ITEMS.register("copper_hammer", () -> new CopperHammer(1f, -3.5f, Tiers.WOOD,  new Item.Properties().stacksTo(1).durability(10)));
 //
 //    public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("dimond_hammer", () -> new Hammer(Tiers.DIAMOND, 4, 0.2f, new Item.Properties().stacksTo(1)));
 //
