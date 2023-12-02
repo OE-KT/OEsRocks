@@ -1,5 +1,7 @@
 package com.oekt.oerocks.items.custom;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -10,8 +12,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CopperHammer extends Hammer{
     public CopperHammer(float p_204108_, float p_204109_, Tier p_204110_, Properties p_204112_) {
@@ -60,4 +66,10 @@ public class CopperHammer extends Hammer{
         level.addFreshEntity(lighting);
     }
 
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> componentList, TooltipFlag tooltipFlag) {
+
+        componentList.add(Component.translatable("Try holding it in the air for a supprise! \n hold right click to raise").withStyle(ChatFormatting.GRAY));
+        super.appendHoverText(stack, level, componentList, tooltipFlag);
+    }
 }
