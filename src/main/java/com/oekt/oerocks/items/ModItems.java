@@ -22,7 +22,7 @@ public class ModItems {
     public static final RegistryObject<Item> DEEPSLATE_ROCK = ITEMS.register("deepslate_rock", () -> new Rock(new Item.Properties().stacksTo(64),
             9, ThrowableRock.Rocktype.NORM, 28));
 
-    public static final RegistryObject<Item> MOLTEN_ROCK = ITEMS.register("molten_rock", () -> new Rock(new Item.Properties().stacksTo(64),
+    public static final RegistryObject<Item> MOLTEN_ROCK = ITEMS.register("molten_rock", () -> new Rock(new Item.Properties().stacksTo(64).fireResistant(),
             4, ThrowableRock.Rocktype.FIRE, 10));
     public static final RegistryObject<Item> FREEZE_ROCK = ITEMS.register("freeze_rock", () -> new Rock(new Item.Properties().stacksTo(64),
             4, ThrowableRock.Rocktype.ICE, 8));

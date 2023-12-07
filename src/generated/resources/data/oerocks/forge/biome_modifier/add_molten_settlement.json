@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_hot/nether",
+  "features": "oerocks:molten_settlement_placed",
+  "step": "underground_ores"
+}

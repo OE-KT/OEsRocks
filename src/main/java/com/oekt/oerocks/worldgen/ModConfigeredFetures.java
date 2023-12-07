@@ -24,12 +24,17 @@ registerKey("settlement");
             registerKey("aged_settlement");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_FROSTED_SETTLEMENT_KEY =
             registerKey("frosted_settlement");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_MOLTEN_SETTLEMENT_KEY =
+            registerKey("molten_settlement");
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplace = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 
         RuleTest deepslateReplace = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
         RuleTest overworldreplace = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
+
+        RuleTest netherreplace = new TagMatchTest(BlockTags.BASE_STONE_NETHER);
         List<OreConfiguration.TargetBlockState> overworldSettlement = List.of(OreConfiguration.target(stoneReplace,
                 ModBlocks.SETTLEMENT.get().defaultBlockState()));
         List<OreConfiguration.TargetBlockState> overworldAgedSettlement = List.of(OreConfiguration.target(deepslateReplace,
@@ -38,9 +43,12 @@ registerKey("settlement");
         List<OreConfiguration.TargetBlockState> overworldFrostedSettlement = List.of(OreConfiguration.target(overworldreplace,
                 ModBlocks.FROSTED_SETTLEMENT.get().defaultBlockState()));
 
+        List<OreConfiguration.TargetBlockState> neatherMoltenSettlement = List.of(OreConfiguration.target(netherreplace,
+                ModBlocks.MOLTEN_SETTLEMENT.get().defaultBlockState()));
         register(context, OVERWOLRD_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldSettlement, 20));
         register(context, OVERWORLD_AGED_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldAgedSettlement, 20));
         register(context, OVERWORLD_FROSTED_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(overworldFrostedSettlement, 20));
+        register(context, NETHER_MOLTEN_SETTLEMENT_KEY, Feature.ORE, new OreConfiguration(neatherMoltenSettlement, 20));
     }
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(OErocks.MODID, name));

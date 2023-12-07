@@ -1,5 +1,6 @@
 package com.oekt.oerocks.blocks;
 
+import com.oekt.oerocks.blocks.custom.MoltenSettlement;
 import com.oekt.oerocks.items.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,6 +23,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> AGED_SETTLEMENT = registerBlock("aged_settlement", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().strength(4)), true);
 
     public static final RegistryObject<Block> FROSTED_SETTLEMENT = registerBlock("frosted_settlement", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().strength(.5f)), true);
+
+    public static final RegistryObject<Block> MOLTEN_SETTLEMENT = registerBlock("molten_settlement", () -> new MoltenSettlement(BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).sound(SoundType.NETHER_WOOD).requiresCorrectToolForDrops().strength(4).lightLevel(emiss -> {
+        return 4;
+    })), true);
 
 
    // public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ModItems.ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
