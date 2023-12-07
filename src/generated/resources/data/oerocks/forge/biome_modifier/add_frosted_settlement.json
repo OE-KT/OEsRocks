@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_cold",
+  "features": "oerocks:frosted_settlement_placed",
+  "step": "underground_ores"
+}
