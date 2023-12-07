@@ -36,7 +36,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> COPPER_HAMMER = ITEMS.register("copper_hammer", () -> new CopperHammer(1f, -3.5f, Tiers.WOOD,  new Item.Properties().stacksTo(1).durability(10)));
 //
-//    public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("dimond_hammer", () -> new Hammer(Tiers.DIAMOND, 4, 0.2f, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("diamond_hammer", () -> new Hammer(4f, -3.5f, Tiers.DIAMOND, new Item.Properties().stacksTo(1)));
 //
 //    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", () -> new Hammer(Tiers.NETHERITE, 4, 0.2f, new Item.Properties().stacksTo(1)));
 
