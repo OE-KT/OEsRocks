@@ -3,8 +3,7 @@
   "values": [
     "oerocks:aged_settlement",
     "minecraft:cobbled_deepslate",
-    "oerocks:frosted_settlement",
-    "oerocks:molten_settlement"
+    "oerocks:frosted_settlement"
 
   ]
 }
