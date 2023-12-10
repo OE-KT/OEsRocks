@@ -2,23 +2,28 @@ package com.oekt.oerocks.items.custom;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.oekt.oerocks.blocks.ModBlocks;
 import com.oekt.oerocks.entitty.ThrowableRock;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.util.ModTags;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.fml.common.Mod;
@@ -123,14 +128,41 @@ public class Slingshot extends ProjectileWeaponItem {
             float power=getPowerForTime(time);
             if (!((double)power < 0.1D)) {
                 if(!level.isClientSide()) {
+
+
+
                     ThrowableRock rock = new ThrowableRock(level, player);
 
                     ItemStack ammo = itemstack.split(1);
                     if (player.isCreative()) {
                         itemstack.grow(1);
                     }
+                    // Read nbt and apply it accordnly
+                    CompoundTag nbt = ammo.getOrCreateTag();
+                    int baseDamege = 1;
+                    int firePower = 0;
+                    int iceDamge = 0;
+                    int[] slots = nbt.getIntArray("slots");
+                    for (int slot : slots) {
+                        switch (slot) {
+                            case 1:
+                                baseDamege+=1;
+                                break;
+                            case 2:
+                                firePower+=1;
+                                break;
+                            case 3:
+                                iceDamge+=1;
+                                break;
+                            default:
+                        }
+                    }
 
                     ammo.getOrCreateTag().putDouble("power", power);
+                    nbt.putInt("base", baseDamege);
+                    nbt.putInt("fire", firePower);
+                    nbt.putInt("ice", iceDamge);
+
                     rock.setItem(ammo);
 
 
@@ -186,7 +218,6 @@ public class Slingshot extends ProjectileWeaponItem {
 
         return f;
     }
-
 
 
 }

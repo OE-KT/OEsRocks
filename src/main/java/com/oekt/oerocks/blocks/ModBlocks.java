@@ -1,6 +1,7 @@
 package com.oekt.oerocks.blocks;
 
 import com.oekt.oerocks.blocks.custom.MoltenSettlement;
+import com.oekt.oerocks.blocks.custom.SlingshotTable;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.sound.ModSounds;
 import net.minecraft.world.item.BlockItem;
@@ -28,6 +29,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> MOLTEN_SETTLEMENT = registerBlock("molten_settlement", () -> new MoltenSettlement(BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).sound(SoundType.NETHER_WOOD).requiresCorrectToolForDrops().strength(4).lightLevel(emiss -> {
         return 4;
     })), true);
+    public static final RegistryObject<Block> SLINGSHOT_TABLE = registerBlock("slingshot_table", () -> new SlingshotTable(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().strength(2)), true);
 
 
    // public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ModItems.ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
