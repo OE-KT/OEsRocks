@@ -1,0 +1,26 @@
+{
+  "settlement_break": {
+    "subtitles": "sounds.oerocks.settlement_break",
+    "sounds": [
+      "oerocks:settlement_break"
+    ]
+  },
+  "settlement_walk": {
+    "subtitles": "sounds.oerocks.settlement_walk",
+    "sounds": [
+      "oerocks:settlement_walk"
+    ]
+  },
+  "settlement_hit": {
+    "subtitles": "sounds.oerocks.settlement_hit",
+    "sounds": [
+      "oerocks:settlement_hit"
+    ]
+  },
+  "settlement_fall": {
+    "subtitles": "sounds.oerocks.settlement_fall",
+    "sounds": [
+      "oerocks:settlement_fall"
+    ]
+  }
+}

@@ -2,6 +2,7 @@ package com.oekt.oerocks.blocks;
 
 import com.oekt.oerocks.blocks.custom.MoltenSettlement;
 import com.oekt.oerocks.items.ModItems;
+import com.oekt.oerocks.sound.ModSounds;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -18,7 +19,7 @@ import static com.oekt.oerocks.OErocks.MODID;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    public static final RegistryObject<Block> SETTLEMENT = registerBlock("settlement", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().strength(2)), true);
+    public static final RegistryObject<Block> SETTLEMENT = registerBlock("settlement", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(ModSounds.BLOCK_SETTLEMET_SOUNDS).requiresCorrectToolForDrops().strength(2)), true);
 
     public static final RegistryObject<Block> AGED_SETTLEMENT = registerBlock("aged_settlement", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(SoundType.GRAVEL).requiresCorrectToolForDrops().strength(4)), true);
 

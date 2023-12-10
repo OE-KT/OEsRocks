@@ -6,6 +6,7 @@ import com.oekt.oerocks.entitty.ModEnittys;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.ModTab;
 import com.oekt.oerocks.loot.ModLootModifres;
+import com.oekt.oerocks.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -54,6 +55,8 @@ public class OErocks
         ModEnittys.ENTITYS_TYPES.register(modEventBus);
 
         ModLootModifres.LOOT_MODIFRERS_SEARLIZERS.register(modEventBus);
+
+        ModSounds.SOUND_EVENTS.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
