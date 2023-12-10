@@ -3,13 +3,17 @@ package com.oekt.oerocks.entitty;
 import com.oekt.oerocks.OErocks;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.custom.Rock;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Blaze;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -128,6 +132,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
                     break;
                 case ICE:
                     //this.setDeltaMovement(this.getDeltaMovement().multiply(-0.7, -0.7, -0.7));
+
                     this.discard();
                     break;
                 default:
@@ -147,6 +152,16 @@ public class ThrowableRock extends ThrowableItemProjectile {
                     break;
                 case ICE:
                     entity.setTicksFrozen(300);
+
+
+                    /*if(entity instanceof Skeleton skeleton) {
+                        ItemStack stack = ((Skeleton) entity).getItemInHand(InteractionHand.MAIN_HAND);
+                        if(stack.getItem() == Items.BOW) {
+                            //OErocks.LOGGER.info("That Skelton has a bow!");
+                            skeleton.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                        }
+                    }*/
+
                     break;
                 default:
                     break;

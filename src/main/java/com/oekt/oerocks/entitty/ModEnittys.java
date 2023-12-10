@@ -15,4 +15,7 @@ public class ModEnittys {
     public static final RegistryObject<EntityType<ThrowableRock>> ROCK_ENITTY =
             ENTITYS_TYPES.register("rock", () -> EntityType.Builder.<ThrowableRock>of(ThrowableRock::new, MobCategory.MISC)
                     .sized(0.5f, 0.5f).build("rock"));
+    public static final RegistryObject<EntityType<RockGard>> ROCK_GARD_ENITTY =
+            ENTITYS_TYPES.register("rock_gard", () -> EntityType.Builder.<RockGard>of(RockGard::new, MobCategory.MISC)
+                    .sized(1, 1).build("rock_gard"));
 }

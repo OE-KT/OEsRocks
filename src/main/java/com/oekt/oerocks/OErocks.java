@@ -3,6 +3,7 @@ package com.oekt.oerocks;
 import com.mojang.logging.LogUtils;
 import com.oekt.oerocks.blocks.ModBlocks;
 import com.oekt.oerocks.entitty.ModEnittys;
+import com.oekt.oerocks.entitty.clinet.RocksGaurdRenderer;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.ModTab;
 import com.oekt.oerocks.loot.ModLootModifres;
@@ -41,6 +42,8 @@ public class OErocks
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+
+
 
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.BLOCKS.register(modEventBus);
@@ -86,6 +89,7 @@ public class OErocks
         LOGGER.info("HELLO from server starting");
     }
 
+
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
@@ -97,6 +101,12 @@ public class OErocks
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             EntityRenderers.register(ModEnittys.ROCK_ENITTY.get(), ThrownItemRenderer::new);
+            EntityRenderers.register(ModEnittys.ROCK_GARD_ENITTY.get(), RocksGaurdRenderer::new);
         }
+
+
+
     }
+
+
 }
