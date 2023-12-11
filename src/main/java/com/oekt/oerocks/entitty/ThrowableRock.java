@@ -3,6 +3,7 @@ package com.oekt.oerocks.entitty;
 import com.oekt.oerocks.OErocks;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.custom.Rock;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -48,7 +49,10 @@ public class ThrowableRock extends ThrowableItemProjectile {
            return _map.get(value);
        }
     }
+    int fire = 0;
+   int ice = 0;
 
+   int baseDamege = 0;
 
     public ThrowableRock(EntityType<? extends ThrowableItemProjectile> EntityType, Level Level) {
         super(EntityType, Level);
@@ -81,7 +85,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
         Entity entity = result.getEntity();
         OErocks.LOGGER.info(rockCc.getRockType().toString());
-        double Damage = rockCc.getDamege()*(this.getItem().getOrCreateTag().getDouble("power")+1);
+        double Damage = baseDamege*(this.getItem().getOrCreateTag().getDouble("power")+1);
         entity.hurt(this.damageSources().thrown(this, this.getOwner()),(float) Damage); // Detirms behavior onHit
         EntittytypeHit(result, rockCc);
 //        if(rockCc.getRockType()!=null) {
@@ -120,53 +124,61 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
     @Override
     public void onAddedToWorld() {
-
+        ItemStack itemStack = this.getItem();
+        CompoundTag nbt = itemStack.getOrCreateTag();
+        baseDamege = nbt.getInt("base");
+        fire = nbt.getInt("fire");
+        ice = nbt.getInt("ice");
         super.onAddedToWorld();
     }
 
     public void typeHit(HitResult result, Rock rockCc) {
-        if(rockCc.getRockType()!=null) {
-            switch(rockCc.getRockType()) {
-                case FIRE:
-                    this.discard();
-                    break;
-                case ICE:
-                    //this.setDeltaMovement(this.getDeltaMovement().multiply(-0.7, -0.7, -0.7));
-
-                    this.discard();
-                    break;
-                default:
-                    this.discard();
-                    break;
-            }
-        }
+            this.discard();
+//        if(rockCc.getRockType()!=null) {
+//            switch(rockCc.getRockType()) {
+//                case FIRE:
+//                    this.discard();
+//                    break;
+//                case ICE:
+//                    //this.setDeltaMovement(this.getDeltaMovement().multiply(-0.7, -0.7, -0.7));
+//
+//                    this.discard();
+//                    break;
+//                default:
+//                    this.discard();
+//                    break;
+//            }
+//        }
 
     }
+
     public void EntittytypeHit(EntityHitResult result, Rock rockCc) {
-
         Entity entity = result.getEntity();
-        if(rockCc.getRockType()!=null) {
-            switch(rockCc.getRockType()) {
-                case FIRE:
-                    entity.setSecondsOnFire(10);
-                    break;
-                case ICE:
-                    entity.setTicksFrozen(300);
+        entity.setSecondsOnFire(fire);
+        entity.setTicksFrozen(ice*100);
 
-
-                    /*if(entity instanceof Skeleton skeleton) {
-                        ItemStack stack = ((Skeleton) entity).getItemInHand(InteractionHand.MAIN_HAND);
-                        if(stack.getItem() == Items.BOW) {
-                            //OErocks.LOGGER.info("That Skelton has a bow!");
-                            skeleton.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-                        }
-                    }*/
-
-                    break;
-                default:
-                    break;
-            }
-        }
+//        if(rockCc.getRockType()!=null) {
+//            switch(rockCc.getRockType()) {
+//                case FIRE:
+//                    entity.setSecondsOnFire(10);
+//                    break;
+//                case ICE:
+//                    entity.setTicksFrozen(300);
+//
+//
+//                    /*if(entity instanceof Skeleton skeleton) {
+//                        ItemStack stack = ((Skeleton) entity).getItemInHand(InteractionHand.MAIN_HAND);
+//                        if(stack.getItem() == Items.BOW) {
+//                            //OErocks.LOGGER.info("That Skelton has a bow!");
+//                            skeleton.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+//                        }
+//                    }*/
+//
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
 
     }
 

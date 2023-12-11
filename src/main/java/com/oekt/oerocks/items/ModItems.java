@@ -1,13 +1,11 @@
 package com.oekt.oerocks.items;
 
+import com.oekt.oerocks.items.custom.Pebble;
 import com.oekt.oerocks.entitty.ThrowableRock;
-import com.oekt.oerocks.items.custom.CopperHammer;
-import com.oekt.oerocks.items.custom.Hammer;
-import com.oekt.oerocks.items.custom.Rock;
-import com.oekt.oerocks.items.custom.Slingshot;
+import com.oekt.oerocks.items.custom.*;
+import com.oekt.oerocks.items.util.PebbleType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -37,6 +35,9 @@ public class ModItems {
     public static final RegistryObject<Item> COPPER_HAMMER = ITEMS.register("copper_hammer", () -> new CopperHammer(1f, -3.5f, Tiers.WOOD,  new Item.Properties().stacksTo(1).durability(10)));
 //
     public static final RegistryObject<Item> DIMOND_HAMMER = ITEMS.register("diamond_hammer", () -> new Hammer(4f, -3.5f, Tiers.DIAMOND, new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> PEBBLE = ITEMS.register("pebble", () -> new Pebble(new Item.Properties().stacksTo(1), PebbleType.BOOSTER, 1));
+    public static final RegistryObject<Item> PEBBLE_MUTI = ITEMS.register("pebble_muti", () -> new Pebble(new Item.Properties().stacksTo(1), PebbleType.MUTIPLER, 10));
 //
 //    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", () -> new Hammer(Tiers.NETHERITE, 4, 0.2f, new Item.Properties().stacksTo(1)));
 

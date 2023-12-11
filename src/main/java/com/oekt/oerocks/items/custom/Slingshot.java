@@ -8,12 +8,14 @@ import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.util.ModTags;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -27,9 +29,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.fml.common.Mod;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.joml.AxisAngle4d;
 import org.joml.Quaternionf;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -139,23 +144,37 @@ public class Slingshot extends ProjectileWeaponItem {
                     }
                     // Read nbt and apply it accordnly
                     CompoundTag nbt = ammo.getOrCreateTag();
+                    CompoundTag itemNbt = stack.getOrCreateTag();
+                    NonNullList<ItemStack> pebbles = NonNullList.withSize(3, ItemStack.EMPTY);
                     int baseDamege = 1;
                     int firePower = 0;
                     int iceDamge = 0;
-                    int[] slots = nbt.getIntArray("slots");
-                    for (int slot : slots) {
-                        switch (slot) {
-                            case 1:
-                                baseDamege+=1;
-                                break;
-                            case 2:
-                                firePower+=1;
-                                break;
-                            case 3:
-                                iceDamge+=1;
-                                break;
-                            default:
+
+                    ContainerHelper.loadAllItems(itemNbt, pebbles);
+
+                    for (ItemStack pebbleC : pebbles) {
+                        if(pebbleC.getItem().asItem() instanceof Pebble pebbleCC) {
+                            switch (pebbleCC.getType()) {
+                                case BOOSTER -> {
+                                    baseDamege += pebbleCC.getPower();
+                                    break;
+                                }
+                                case MUTIPLER -> {
+                                    baseDamege *= pebbleCC.getPower();
+                                    break;
+                                }
+                                case FIRE -> {
+                                    firePower += pebbleCC.getPower();
+                                    break;
+                                }
+                                case ICE -> {
+                                    iceDamge += pebbleCC.getPower();
+                                    break;
+                                }
+                            }
+
                         }
+
                     }
 
                     ammo.getOrCreateTag().putDouble("power", power);
