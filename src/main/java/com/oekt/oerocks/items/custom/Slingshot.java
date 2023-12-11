@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -191,10 +192,15 @@ public class Slingshot extends ProjectileWeaponItem {
 
                     //rock.damege = rock.damege*(power+1);
 
-
                         rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f*power, 1.0F);
                         level.addFreshEntity(rock);
                         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.DEEPSLATE_HIT, SoundSource.PLAYERS, 1.0F, 1.3f*power);
+
+
+
+
+
+
 
 
 

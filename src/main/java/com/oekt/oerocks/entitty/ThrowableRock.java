@@ -60,9 +60,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
    float speed = 1f;
 
-   Entity target;
 
-   boolean deathMode = false;
    boolean dupacict = false;
 
     public ThrowableRock(EntityType<? extends ThrowableItemProjectile> EntityType, Level Level) {
