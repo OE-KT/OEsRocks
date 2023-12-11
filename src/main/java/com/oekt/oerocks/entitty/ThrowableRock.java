@@ -4,6 +4,7 @@ import com.oekt.oerocks.OErocks;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.custom.Rock;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 
 import java.util.HashMap;
@@ -52,7 +55,15 @@ public class ThrowableRock extends ThrowableItemProjectile {
     int fire = 0;
    int ice = 0;
 
+   int perjectiols = 0;
    int baseDamege = 0;
+
+   float speed = 1f;
+
+   Entity target;
+
+   boolean deathMode = false;
+   boolean dupacict = false;
 
     public ThrowableRock(EntityType<? extends ThrowableItemProjectile> EntityType, Level Level) {
         super(EntityType, Level);
@@ -124,11 +135,26 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
     @Override
     public void onAddedToWorld() {
+        if(dupacict) {super.onAddedToWorld();}
         ItemStack itemStack = this.getItem();
         CompoundTag nbt = itemStack.getOrCreateTag();
         baseDamege = nbt.getInt("base");
         fire = nbt.getInt("fire");
         ice = nbt.getInt("ice");
+        perjectiols = nbt.getInt("rockP");
+
+        /*if(perjectiols > 1) {
+            nbt.getUUID("player-uuid");
+            Player player = level().getPlayerByUUID(nbt.getUUID("playeruuid"));
+            for (int i = 0; i < perjectiols; i++) {
+                ThrowableRock rock = new ThrowableRock(this.level(), player);
+                rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f, 1.0F);
+                level().addFreshEntity(rock);
+
+            }
+        }*/
+
+
         super.onAddedToWorld();
     }
 
@@ -156,6 +182,24 @@ public class ThrowableRock extends ThrowableItemProjectile {
         Entity entity = result.getEntity();
         entity.setSecondsOnFire(fire);
         entity.setTicksFrozen(ice*100);
+//        for (int i = 0; i < perjectiols; i++) {
+//            ThrowableRock rock = new ThrowableRock(this.level());
+//            rock.perjectiols = perjectiols;
+//            rock.baseDamege = baseDamege;
+//            rock.dupacict = true;
+//            rock.speed = speed+0.5f;
+//
+//            Vec3 derection = entity.position().vectorTo(rock.position());
+//            rock.setPos(entity.position().offsetRandom(RandomSource.create(), 5));
+//
+//
+//            rock.shoot((float) derection.x, (float) derection.y, (float) derection.z, 0f, 2F+speed);
+//            level().addFreshEntity(rock);
+//        }
+
+
+
+
 
 //        if(rockCc.getRockType()!=null) {
 //            switch(rockCc.getRockType()) {
@@ -181,7 +225,6 @@ public class ThrowableRock extends ThrowableItemProjectile {
 //        }
 
     }
-
 
 
 }

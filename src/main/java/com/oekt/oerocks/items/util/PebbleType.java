@@ -8,8 +8,10 @@ import java.util.Map;
 public enum PebbleType {
     BOOSTER(0),
     MUTIPLER(1),
-    FIRE(2),
-    ICE(3);
+
+    MORE(2),
+    FIRE(3),
+    ICE(4);
     public final int typeV;
     private PebbleType(int value)
     {

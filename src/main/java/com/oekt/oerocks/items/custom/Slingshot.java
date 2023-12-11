@@ -149,7 +149,7 @@ public class Slingshot extends ProjectileWeaponItem {
                     int baseDamege = 1;
                     int firePower = 0;
                     int iceDamge = 0;
-
+                   int perjecitles = 5;
                     ContainerHelper.loadAllItems(itemNbt, pebbles);
 
                     for (ItemStack pebbleC : pebbles) {
@@ -176,12 +176,13 @@ public class Slingshot extends ProjectileWeaponItem {
                         }
 
                     }
-
+                    
                     ammo.getOrCreateTag().putDouble("power", power);
                     nbt.putInt("base", baseDamege);
                     nbt.putInt("fire", firePower);
                     nbt.putInt("ice", iceDamge);
-
+                    nbt.putInt("rockP", perjecitles);
+                    //nbt.putUUID("player-uuid", player.getUUID());
                     rock.setItem(ammo);
 
 
@@ -190,9 +191,13 @@ public class Slingshot extends ProjectileWeaponItem {
 
                     //rock.damege = rock.damege*(power+1);
 
-                    rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f*power, 1.0F);
-                    level.addFreshEntity(rock);
-                    level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.DEEPSLATE_HIT, SoundSource.PLAYERS, 1.0F, 1.3f*power);
+
+                        rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f*power, 1.0F);
+                        level.addFreshEntity(rock);
+                        level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.DEEPSLATE_HIT, SoundSource.PLAYERS, 1.0F, 1.3f*power);
+
+
+
                 }
 
                 player.awardStat(Stats.ITEM_USED.get(this));
