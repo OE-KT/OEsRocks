@@ -27,12 +27,15 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.compress.utils.Lists;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.joml.AxisAngle4d;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,23 +137,12 @@ public class Slingshot extends ProjectileWeaponItem {
             float power=getPowerForTime(time);
             if (!((double)power < 0.1D)) {
                 if(!level.isClientSide()) {
-
-
-
-                    ThrowableRock rock = new ThrowableRock(level, player);
-
-                    ItemStack ammo = itemstack.split(1);
-                    if (player.isCreative()) {
-                        itemstack.grow(1);
-                    }
-                    // Read nbt and apply it accordnly
-                    CompoundTag nbt = ammo.getOrCreateTag();
-                    CompoundTag itemNbt = stack.getOrCreateTag();
                     NonNullList<ItemStack> pebbles = NonNullList.withSize(3, ItemStack.EMPTY);
                     int baseDamege = 1;
                     int firePower = 0;
                     int iceDamge = 0;
-                   int perjecitles = 5;
+                    int perjecitles = 5;
+                    CompoundTag itemNbt = stack.getOrCreateTag();
                     ContainerHelper.loadAllItems(itemNbt, pebbles);
 
                     for (ItemStack pebbleC : pebbles) {
@@ -177,24 +169,43 @@ public class Slingshot extends ProjectileWeaponItem {
                         }
 
                     }
-                    
-                    ammo.getOrCreateTag().putDouble("power", power);
-                    nbt.putInt("base", baseDamege);
-                    nbt.putInt("fire", firePower);
-                    nbt.putInt("ice", iceDamge);
-                    nbt.putInt("rockP", perjecitles);
-                    //nbt.putUUID("player-uuid", player.getUUID());
-                    rock.setItem(ammo);
+                    // Shoots Projectiles
+                    float offset = -10f;
+                    for(int i = 0; i < perjecitles; i++) {
+                        ThrowableRock rock = new ThrowableRock(level, player);
+
+                        ItemStack ammo = itemstack.split(1);
+                        if (player.isCreative()) {
+                            itemstack.grow(1);
+                        }
+
+                        // Read nbt and apply it accordnly
+                        CompoundTag nbt = ammo.getOrCreateTag();
 
 
+                        ammo.getOrCreateTag().putDouble("power", power);
+                        nbt.putInt("base", baseDamege);
+                        nbt.putInt("fire", firePower);
+                        nbt.putInt("ice", iceDamge);
+                        nbt.putInt("rockP", perjecitles);
+                        //nbt.putUUID("player-uuid", player.getUUID());
+                        rock.setItem(ammo);
 
+                        //rock.damege = rock.damege*(power+1);
 
+                        // Code From CrossBowItem class
+                        Vec3 vec31 = player.getUpVector(1.0F);
+                        Quaternionf quaternionf = (new Quaternionf()).setAngleAxis((double)(offset * ((float)Math.PI / 180F)), vec31.x, vec31.y, vec31.z);
+                        Vec3 vec3 = player.getViewVector(1.0F);
+                        Vector3f vector3f = vec3.toVector3f().rotate(quaternionf);
 
-                    //rock.damege = rock.damege*(power+1);
-
-                        rock.shootFromRotation(player, player.getXRot(), player.getYRot(), 0F, 1.2f*power, 1.0F);
+                        rock.shoot((double)vector3f.x(), (double)vector3f.y(), (double)vector3f.z(), 1.2f*power, 1.0f);
+                        offset = offset + 10f;
                         level.addFreshEntity(rock);
                         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.DEEPSLATE_HIT, SoundSource.PLAYERS, 1.0F, 1.3f*power);
+                    }
+
+
 
 
 
@@ -222,6 +233,13 @@ public class Slingshot extends ProjectileWeaponItem {
     public int getUseDuration(ItemStack p_41454_) {
         return 72000;
     }
+//    public List<ItemStack> getListOfPorjectais(int projectiles) {
+//        List<ItemStack> projectilesList = Lists.newArrayList();
+//        for (int i = 0; i < projectiles; i++) {
+//
+//
+//        }
+//    }
     public InteractionResultHolder<ItemStack> use(Level p_40672_, Player p_40673_, InteractionHand p_40674_) {
         ItemStack itemstack = p_40673_.getItemInHand(p_40674_);
 
