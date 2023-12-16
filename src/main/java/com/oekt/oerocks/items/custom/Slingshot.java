@@ -142,6 +142,7 @@ public class Slingshot extends ProjectileWeaponItem {
                     int firePower = 0;
                     int iceDamge = 0;
                     int perjecitles = 5;
+                    int bouceniss = 4;
                     CompoundTag itemNbt = stack.getOrCreateTag();
                     ContainerHelper.loadAllItems(itemNbt, pebbles);
 
@@ -187,7 +188,8 @@ public class Slingshot extends ProjectileWeaponItem {
                         nbt.putInt("base", baseDamege);
                         nbt.putInt("fire", firePower);
                         nbt.putInt("ice", iceDamge);
-                        nbt.putInt("rockP", perjecitles);
+                        nbt.putInt("bounce", bouceniss);
+                        //nbt.putInt("rockP", perjecitles);
                         //nbt.putUUID("player-uuid", player.getUUID());
                         rock.setItem(ammo);
 

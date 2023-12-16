@@ -59,7 +59,11 @@ public class ThrowableRock extends ThrowableItemProjectile {
    int baseDamege = 0;
 
    float speed = 1f;
+   int bouceniss = 0;
 
+   int timesBonged = 0;
+   int maxBonged = 5;
+    boolean boucesed = false;
 
    boolean dupacict = false;
 
@@ -94,7 +98,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
         Entity entity = result.getEntity();
         OErocks.LOGGER.info(rockCc.getRockType().toString());
-        double Damage = baseDamege*(this.getItem().getOrCreateTag().getDouble("power")+1);
+        double Damage = baseDamege*(this.getItem().getOrCreateTag().getDouble("power")+1*this.speed);
         entity.hurt(this.damageSources().thrown(this, this.getOwner()),(float) Damage); // Detirms behavior onHit
         EntittytypeHit(result, rockCc);
 //        if(rockCc.getRockType()!=null) {
@@ -139,7 +143,8 @@ public class ThrowableRock extends ThrowableItemProjectile {
         baseDamege = nbt.getInt("base");
         fire = nbt.getInt("fire");
         ice = nbt.getInt("ice");
-        perjectiols = nbt.getInt("rockP");
+        bouceniss = nbt.getInt("bounce");
+        //perjectiols = nbt.getInt("rockP");
 
         /*if(perjectiols > 1) {
             nbt.getUUID("player-uuid");
@@ -157,7 +162,16 @@ public class ThrowableRock extends ThrowableItemProjectile {
     }
 
     public void typeHit(HitResult result, Rock rockCc) {
-            this.discard();
+            if(bouceniss > 1 && timesBonged < maxBonged) {
+                Vec3 vec = this.getForward().subtract(this.getUpVector(1)).normalize().multiply(bouceniss, bouceniss, bouceniss);
+                Vec3 newVec = vec.multiply(this.getDeltaMovement().reverse());
+               this.setDeltaMovement(newVec.multiply(0.3, 0.3, 0.3));
+               this.speed*=0.5f;
+                timesBonged++;
+            } else {
+                this.discard();
+            }
+
 //        if(rockCc.getRockType()!=null) {
 //            switch(rockCc.getRockType()) {
 //                case FIRE:
@@ -223,6 +237,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 //        }
 
     }
+
 
 
 }
