@@ -58,7 +58,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
    int perjectiols = 0;
    int baseDamege = 0;
 
-   float speed = 1f;
+   double speed = 1f;
    int bouceniss = 0;
 
    int timesBonged = 0;
@@ -166,7 +166,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
                 Vec3 vec = this.getForward().subtract(this.getUpVector(1)).normalize().multiply(bouceniss, bouceniss, bouceniss);
                 Vec3 newVec = vec.multiply(this.getDeltaMovement().reverse());
                this.setDeltaMovement(newVec.multiply(0.3, 0.3, 0.3));
-               this.speed*=0.5f;
+
                 timesBonged++;
             } else {
                 this.discard();
@@ -238,6 +238,10 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
     }
 
+    @Override
+    public void tick() {
+        speed = this.getDeltaMovement().length();
 
-
+        super.tick();
+    }
 }
