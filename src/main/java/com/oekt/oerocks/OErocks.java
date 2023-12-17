@@ -2,13 +2,17 @@ package com.oekt.oerocks;
 
 import com.mojang.logging.LogUtils;
 import com.oekt.oerocks.blocks.ModBlocks;
+import com.oekt.oerocks.blocks.enitty.ModBlockEnittys;
 import com.oekt.oerocks.entitty.ModEnittys;
 import com.oekt.oerocks.entitty.clinet.RocksGaurdRenderer;
 import com.oekt.oerocks.items.ModItems;
 import com.oekt.oerocks.items.ModTab;
 import com.oekt.oerocks.loot.ModLootModifres;
+import com.oekt.oerocks.screen.ModMenuTypes;
+import com.oekt.oerocks.screen.SlingshotTableScreen;
 import com.oekt.oerocks.sound.ModSounds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -60,6 +64,10 @@ public class OErocks
         ModLootModifres.LOOT_MODIFRERS_SEARLIZERS.register(modEventBus);
 
         ModSounds.SOUND_EVENTS.register(modEventBus);
+
+        ModBlockEnittys.BLOCK_ENITTYS.register(modEventBus);
+
+        ModMenuTypes.MENUS.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -102,6 +110,7 @@ public class OErocks
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             EntityRenderers.register(ModEnittys.ROCK_ENITTY.get(), ThrownItemRenderer::new);
             EntityRenderers.register(ModEnittys.ROCK_GARD_ENITTY.get(), RocksGaurdRenderer::new);
+            MenuScreens.register(ModMenuTypes.SLINGSHOT_TABLE_MENU.get(), SlingshotTableScreen::new);
         }
 
 

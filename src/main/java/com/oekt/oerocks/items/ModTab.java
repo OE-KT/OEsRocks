@@ -18,6 +18,7 @@ public class ModTab {
         .displayItems((parameters, output) -> {
             output.accept(ModItems.SLINGSHOT.get());
             output.accept(ModBlocks.SETTLEMENT.get());
+            output.accept(ModBlocks.SLINGSHOT_TABLE.get());
             output.accept(ModBlocks.AGED_SETTLEMENT.get());
             output.accept(ModBlocks.FROSTED_SETTLEMENT.get());
             output.accept(ModBlocks.MOLTEN_SETTLEMENT.get());

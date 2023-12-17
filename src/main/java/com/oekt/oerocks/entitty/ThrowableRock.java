@@ -63,7 +63,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
    int timesBonged = 0;
    int maxBonged = 5;
-    boolean boucesed = false;
+    //boolean boucesed = false;
 
    boolean dupacict = false;
 
@@ -98,7 +98,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
         Entity entity = result.getEntity();
         OErocks.LOGGER.info(rockCc.getRockType().toString());
-        double Damage = baseDamege*(this.getItem().getOrCreateTag().getDouble("power")+1*this.speed);
+        double Damage = (baseDamege*this.speed)*(this.getItem().getOrCreateTag().getDouble("power")+1);
         entity.hurt(this.damageSources().thrown(this, this.getOwner()),(float) Damage); // Detirms behavior onHit
         EntittytypeHit(result, rockCc);
 //        if(rockCc.getRockType()!=null) {
@@ -240,7 +240,7 @@ public class ThrowableRock extends ThrowableItemProjectile {
 
     @Override
     public void tick() {
-        speed = this.getDeltaMovement().length();
+        speed = this.getDeltaMovement().length()*3;
 
         super.tick();
     }
